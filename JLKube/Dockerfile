@@ -16,7 +16,11 @@ RUN mkdir /workspace && cd /workspace &&\
     jupyter lab build &&\
     npm uninstall $(ls -1 node_modules | tr '/\n' ' ') &&\
     npm uninstall -g typescript &&\
-    apk del build-base musl-dev python3-dev zeomq-dev
+    apk del build-base musl-dev python3-dev zeromq-dev &&\
+    cd .. &&\
+    rm -r JLTerminal-master &&\
+    mkdir /usr/scripts &&\
+    echo 'echo edit your scripts in /usr/scripts/entry_point.sh' > /usr/scripts/entry_point.sh
 EXPOSE 8888
 #RUN mkdir -p /opt/app/data
 CMD jupyter lab --ip=* --port=8888 --no-browser --notebook-dir=/workspace --allow-root
