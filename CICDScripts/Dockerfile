@@ -1,8 +1,8 @@
-FROM alpine
-RUN apk update && apk add git openssh &&\
-    ssh-keygen -R github.com &&\
-    mkdir ~/.ssh &&\
-    touch ~/.ssh/known_hosts &&\
-    ssh-keyscan -t rsa domain.com >> ~/.ssh/known_hosts &&\
-    mkdir -p /usr/scripts && cd /usr/scripts &&\
-    git clone git@github.com:wangziling100/CICDScrpits.git
+FROM alpine/git:latest
+RUN apk --no-cache add bash &&\
+    mkdir /usr/scripts &&\
+    cd /usr/scripts &&\
+    wget https://github.com/wangziling100/CICDScrpits/archive/master.zip &&\
+    unzip master.zip &&\
+    rm master.zip
+
