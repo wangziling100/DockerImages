@@ -1,6 +1,6 @@
 FROM node:lts-alpine
 RUN mkdir /workspace && cd /workspace &&\
-    apk update && apk add jq build-base libzmq musl-dev python3 python3-dev zeromq-dev git openssh &&\
+    apk update && apk add bash jq build-base libzmq musl-dev python3 python3-dev zeromq-dev git openssh &&\
     pip3 install pyzmq jupyterlab &&\
     pip3 install --upgrade jupyterlab-git &&\
     apk del build-base musl-dev python3-dev zeromq-dev &&\
@@ -16,7 +16,7 @@ RUN mkdir /workspace && cd /workspace &&\
     jupyter lab build &&\
     npm uninstall $(ls -1 node_modules | tr '/\n' ' ') &&\
     npm uninstall -g typescript &&\
-    apk del build-base musl-dev python3-dev zeromq-dev &&\
+    apk del build-base musl-dev python3-dev zeromq-dev jq libzmq &&\
     cd .. &&\
     rm -r JLTerminal-master &&\
     mkdir /usr/scripts &&\
