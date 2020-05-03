@@ -14,7 +14,7 @@ RUN mkdir /workspace && cd /workspace &&\
     jupyter labextension link . &&\
     jupyter labextension update --all &&\
     jupyter lab build &&\
-    npm uninstall `ls -1 node_modules | tr '/\n' ' '` '` &&\
+    npm uninstall $(ls -1 node_modules | tr '/\n' ' ') &&\
     npm uninstall -g typescript &&\
     apk del build-base musl-dev python3-dev zeomq-dev
 EXPOSE 8888
