@@ -5,7 +5,7 @@ RUN mkdir /workspace && cd /workspace &&\
     pip3 install --upgrade jupyterlab-git &&\
     apk del build-base musl-dev python3-dev zeromq-dev &&\
     npm install -g typescript &&\
-    https://github.com/wangziling100/JLTerminal/archive/master.zip &&\
+    wget https://github.com/wangziling100/JLTerminal/archive/master.zip &&\
     unzip master.zip &&\
     rm master.zip &&\
     cd JLTerminal-master &&\
