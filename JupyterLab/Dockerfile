@@ -1,4 +1,4 @@
-FROM node:current-alpine
+FROM node:lts-alpine
 RUN apk --no-cache add build-base libzmq musl-dev zeromq-dev python3 python3-dev &&\
     pip3 --no-cache-dir install pyzmq jupyterlab &&\
     apk del build-base musl-dev zeromq-dev python3-dev
