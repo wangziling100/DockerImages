@@ -1,7 +1,7 @@
 FROM node:lts-alpine AS intermedia
 RUN mkdir /workspace && cd /workspace &&\
-    apk --no-cache add jq build-base libzmq musl-dev python3 python3-dev zeromq-dev git openssh &&\
-    pip3 install --no-cache-dir pyzmq jupyterlab jupyterlab-git &&\
+    apk --no-cache add jq build-base libzmq musl-dev python3 python3-dev zeromq-dev  &&\
+    pip3 install --no-cache-dir pyzmq jupyterlab &&\
     npm install -g typescript &&\
     wget https://github.com/wangziling100/JLTerminal/archive/master.zip &&\
     unzip master.zip &&\
@@ -15,7 +15,7 @@ RUN mkdir /workspace && cd /workspace &&\
 
     npm uninstall $(ls -1 node_modules | tr '/\n' ' ') &&\
     npm uninstall -g typescript &&\
-    # apk del build-base musl-dev python3-dev zeromq-dev jq &&\
+    apk del build-base musl-dev python3-dev zeromq-dev jq &&\
     yarn cache clean &&\
     rm -r /usr/share/jupyter/lab/staging &&\
     # rm -r /usr/local/lib/* &&\
