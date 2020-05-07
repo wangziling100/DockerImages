@@ -1,5 +1,5 @@
 FROM wangziling100/jlkube:base
-RUN apk --no-cache add bash git &&\
+RUN apk --no-cache add bash git curl &&\
     pip3 --no-cache-dir install jupyterlab-git &&\
     jupyter labextension install @wangziling100/jlterminal &&\
     jupyter lab build &&\
@@ -12,6 +12,11 @@ RUN apk --no-cache add bash git &&\
     rm /usr/share/jupyter/lab/static/*map &&\
     mkdir /usr/scripts &&\
     mkdir /workspace &&\
-    echo 'echo edit your scripts in /usr/scripts/entry_point.sh' > /usr/scripts/entry_point.sh 
+    echo 'echo edit your scripts in /usr/scripts/entry_point.sh' > /usr/scripts/entry_point.sh &&\
+    cd /workspace &&\
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl &&\
+    apk del curl &&\
+    chmod +x ./kubectl &&\
+    mv ./kubectl /usr/local/bin/kubectl
 EXPOSE 8888
 CMD jupyter lab --ip=* --port=8888 --no-browser --notebook-dir=/workspace --allow-root
