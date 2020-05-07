@@ -1,4 +1,4 @@
-FROM alpine/git:latest
+FROM alpine/git:latest 
 RUN apk --no-cache add bash jq python3 &&\
     mkdir /usr/scripts &&\
     mkdir /workspace &&\
