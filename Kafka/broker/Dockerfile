@@ -2,10 +2,9 @@ FROM wangziling100/bash
 ENV KAFKA_BROKER_CONFIG="/usr/kafka_broker/config/server.properties" \
     ZOOKEEPER_SERVER="localhost:2181"
 RUN apk --no-cache add openjdk8-jre &&\
-    rm -r /usr/lib/jvm/java-1.8-openjdk/
-USER 1000
-COPY kafka_broker /usr/kafka_broker
-COPY java-1.8-openjdk/ /usr/lib/jvm/java-1.8-openjdk
-COPY kafka_broker.sh /usr/kafka_broker.sh
+    rm -r /usr/lib/jvm/java-1.8-openjdk/ 
+COPY --chown=1000 kafka_broker /usr/kafka_broker
+COPY --chown=1000 java-1.8-openjdk/ /usr/lib/jvm/java-1.8-openjdk
+COPY --chown=1000 kafka_broker.sh /usr/kafka_broker.sh
 EXPOSE 9092
 CMD ["bin/bash", "/usr/kafka_broker.sh"]
