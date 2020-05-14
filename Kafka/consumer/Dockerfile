@@ -5,7 +5,8 @@ ENV KAFKA_SERVER="localhost" \
     KAFKA_CONSUMER_FROM_BEGINNING="--from-beginning"
 RUN apk --no-cache add openjdk8-jre &&\
     rm -r /usr/lib/jvm/java-1.8-openjdk/
-COPY kafka_consumer /usr/kafka_consumer
-COPY java-1.8-openjdk/ /usr/lib/jvm/java-1.8-openjdk
-COPY kafka_consumer.sh /usr/kafka_consumer.sh
+    cd /usr/ &&\
+    wget https://github.com/wangziling100/DockerImages/raw/master/Kafka/consumer/kafka_consumer_wangziling100.zip &&\
+    unzip kafka_consumer_wangziling100.zip &&\
+    mv java-1.8-openjdk /usr/lib/jvm/
 CMD ["bin/bash", "/usr/kafka_consumer.sh"]
