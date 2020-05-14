@@ -6,7 +6,7 @@ RUN apk --no-cache add openjdk8-jre &&\
     cd /usr/ &&\
     wget https://github.com/wangziling100/DockerImages/raw/master/Kafka/broker/kafka_broker_wangziling100.zip &&\
     unzip kafka_broker_wangziling100 &&\
-    rm kafka_broker_wangziling100 &&\
+    rm kafka_broker_wangziling100.zip &&\
     mv java-1.8-openjdk /usr/lib/jvm/java-1.8-openjdk
 
 EXPOSE 9092
