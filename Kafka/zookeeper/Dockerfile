@@ -5,6 +5,7 @@ RUN apk --no-cache add openjdk8-jre &&\
     cd /usr/ &&\
     wget https://github.com/wangziling100/DockerImages/raw/master/Kafka/zookeeper/kafka_zookeeper_wangziling100.zip &&\
     unzip kafka_zookeeper_wangziling100.zip &&\
+    rm kafka_zookeeper_wangziling100.zip &&\
     mv java-1.8-openjdk /usr/lib/jvm/
 EXPOSE 2181
 EXPOSE 2888
