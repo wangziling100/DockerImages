@@ -1,6 +1,6 @@
 FROM wangziling100/bash
 ENV KAFKA_BROKER_SERVER="localhost:9092" \
-    KAFKA_TOPICS="test" \
+    KAFKA_TOPICS="test" 
 RUN apk --no-cache add openjdk8-jre &&\
     rm -r /usr/lib/jvm/java-1.8-openjdk/ &&\
     cd /usr/ &&\
