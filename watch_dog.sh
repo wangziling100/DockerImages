@@ -10,8 +10,8 @@ usage(){
 
 broker=$KAFKA_BROKER_SERVER
 topics=$KAFKA_TOPICS
-broker="localhost:9092"
-topics="test"
+#broker="localhost:9092"
+#topics="test"
 args="`getopt -u -q -o "b:ht:" -l "broker,help,topics" -- "$@"`"
 [ $? -ne 0 ] && usage 
 
