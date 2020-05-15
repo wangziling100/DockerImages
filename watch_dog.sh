@@ -11,7 +11,7 @@ usage(){
 broker=$KAFKA_BROKER_SERVER
 topics=$KAFKA_TOPICS
 #broker="localhost:9092"
-#topics="test"
+#topics="test,test1"
 args="`getopt -u -q -o "b:ht:" -l "broker,help,topics" -- "$@"`"
 [ $? -ne 0 ] && usage 
 
@@ -64,14 +64,24 @@ tmux new -s init -d
 for topic in ${topics[@]}; do
     # build listeners
     tmux neww -a -n $topic -t init
-    str=
     tmux send-keys -t "init:$topic" "/usr/origin/bin/kafka-console-producer.sh --bootstrap-server $broker --topic $topic" ENTER
     # build pipes
     pipe="/tmp/$topic"
     if [ ! -p $pipe ]; then
+        if [ -f $pipe ]; then
+            rm $pipe
+        fi
         mkfifo $pipe
         chmod 777 $pipe
     fi
+    #check if producer prepared
+    producer_running=""
+    while [ -z "$producer_running" ]; do
+        sleep 0.01
+        producer_running=`ps -ef | grep -w $topic`
+        echo 'wait producer to start...'
+    done
+
     # init listener
     init_send &
     PID+=([$topic]=$!)
