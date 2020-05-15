@@ -1,0 +1,22 @@
+{
+    "python":{
+        "full":"",
+        "ext":"py",
+        "cmd":"python3 $fn"
+    },
+    "jupyterlab":{
+        "full":"all",
+        "ext":"",
+        "cmd":"clear && cd $ws && jlpm && jlpm run build && jlpm install && jupyter labextension install . --no-build && jupyter lab build"
+    },
+    "python3":{
+        "full":"",
+        "ext":"py",
+        "cmd":"python3 $fn"
+    },
+    "producer":{
+        "full":"",
+	"ext":"sh",
+	"cmd":"bash $ws/test/test_function.sh"
+    }
+}
