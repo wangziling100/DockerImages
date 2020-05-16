@@ -47,7 +47,7 @@ topics=($(echo $topics | tr ',' ' '))
 clean(){
     tmux kill-session -t init
     for topic in ${topics[@]}; do
-        pipe="/tmp/$topic_out"
+        pipe="/tmp/${topic}_out"
         rm -f $pipe
     done
 }
@@ -66,7 +66,8 @@ for topic in ${topics[@]}; do
     tmux neww -a -n $topic -t init
     tmux send-keys -t "init:$topic" "/usr/origin/bin/kafka-console-producer.sh --bootstrap-server $broker --topic $topic" ENTER
     # build pipes
-    pipe="/tmp/$topic_out"
+    pipe="/tmp/${topic}_out"
+    echo $pipe
     if [ ! -p $pipe ]; then
         if [ -f $pipe ]; then
             rm $pipe
@@ -103,9 +104,9 @@ check_run(){
 
 # send messages
 send(){
-    # $1: topic
-    read line < /tmp/$1
-    tmux send-keys -t "init:$1" "$line" ENTER
+    # $1: pipe
+    read line < $pipe
+    tmux send-keys -t "init:$topic" "$line" ENTER
     return
 }
 
@@ -115,7 +116,8 @@ while true; do
         check_run ${PID[$topic]}
         run=$?
         if [ $run -eq 0 ]; then
-            send $topic &
+            pipe="/tmp/${topic}_out"
+            send $pipe &
             PID[$topic]=$!
         fi
     done
