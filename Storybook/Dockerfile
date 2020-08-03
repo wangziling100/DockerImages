@@ -19,5 +19,7 @@ ADD storybook/1-Button-antd.stories.js /workspace/default/src/stories
 ADD storybook/main.js /workspace/default/.storybook
 ADD storybook/tailwind.css /workspace/default/src/css
 ADD storybook/postcss.config.js /workspace/default
+WORKDIR /workspace/default
+CMD yarn storybook
 EXPOSE 3000
 EXPOSE 9009
