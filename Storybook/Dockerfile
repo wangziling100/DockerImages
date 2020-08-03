@@ -5,11 +5,10 @@ RUN mkdir /workspace &&\
     npx create-react-app default --template typescript &&\
     cd default &&\
     npx -p @storybook/cli sb init &&\
-    yarn add -D @storybook/preset-create-react-app &&\
-    yarn add antd  &&\
-    yarn add -d postcss-import postcss-loader cssnano sugarss autoprefixer postcss-mixins tailwindcss &&\
-    npx tailwindcss init &&\
+    yarn add -D @storybook/preset-create-react-app postcss-import postcss-loader cssnano sugarss autoprefixer postcss-mixins tailwindcss &&\
+    yarn add antd &&\
     yarn cache clean &&\
+    npx tailwindcss init &&\
     mkdir src/css &&\
     mkdir src/components
 ADD storybook/ColorButton.stories.tsx /workspace/default/src/stories
