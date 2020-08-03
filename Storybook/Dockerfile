@@ -6,6 +6,10 @@ RUN mkdir /workspace &&\
     cd default &&\
     npx -p @storybook/cli sb init &&\
     yarn add -D @storybook/preset-create-react-app &&\
-    yarn cache clean
+    yarn cache clean &&\
+    mkdir src/components
+ADD storybook/ColorButton.stories.tsx /workspace/default/src/stories
+ADD storybook/ColorButton.tsx /workspace/default/src/components
+ADD storybook/config.ts /workspace/default/.storybook
 EXPOSE 3000
 EXPOSE 9009
