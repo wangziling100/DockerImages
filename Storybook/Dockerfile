@@ -6,6 +6,7 @@ RUN mkdir /workspace &&\
     cd default &&\
     npx -p @storybook/cli sb init &&\
     yarn add -D @storybook/preset-create-react-app &&\
+    yarn add antd &&\
     yarn cache clean &&\
     mkdir src/components
 ADD storybook/ColorButton.stories.tsx /workspace/default/src/stories
