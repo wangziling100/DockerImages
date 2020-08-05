@@ -1,0 +1,10 @@
+lerna init
+lerna clean
+lerna create <package-name>
+lerna publish
+yarn workspace <workspace-name> <command>
+yarn workspace <workspace-name> add <packages>
+yarn workspaces add <packages>
+yarn install
+git config --local user.name <username>
+git config --local user.email <email>
