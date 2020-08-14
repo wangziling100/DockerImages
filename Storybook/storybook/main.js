@@ -9,7 +9,7 @@ module.exports = {
       propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
     },
   },
-  stories: ['../src/**/*.stories.js'],
+  stories: ['../src/**/*.stories.(js|tsx)'],
   addons: [
     '@storybook/preset-create-react-app',
     '@storybook/addon-actions',
