@@ -15,7 +15,7 @@ RUN mkdir /workspace &&\
     mkdir src/components
 ADD storybook/ColorButton.stories.tsx /workspace/default/src/stories
 ADD storybook/ColorButton.tsx /workspace/default/src/components
-ADD storybook/config.ts /workspace/default/.storybook
+#ADD storybook/config.ts /workspace/default/.storybook
 ADD storybook/1-Button-antd.stories.js /workspace/default/src/stories
 ADD storybook/main.js /workspace/default/.storybook
 ADD storybook/tailwind.css /workspace/default/src/css
@@ -25,4 +25,5 @@ ADD storybook/build-links.sh /workspace
 WORKDIR /workspace/default
 CMD yarn storybook
 EXPOSE 3000
-EXPOSE 9009
+#EXPOSE 9009
+EXPOSE 6006
