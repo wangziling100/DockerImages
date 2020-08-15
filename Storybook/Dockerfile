@@ -7,6 +7,7 @@ RUN mkdir /workspace &&\
     cd default &&\
     npx -p @storybook/cli sb init &&\
     yarn add -D @storybook/preset-create-react-app postcss-import postcss-loader cssnano sugarss autoprefixer postcss-mixins tailwindcss &&\
+    yarn add -D classnames @types/classnames &&\
     yarn add antd &&\
     yarn cache clean &&\
     npx tailwindcss init &&\
